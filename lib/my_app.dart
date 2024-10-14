@@ -1,5 +1,8 @@
+import 'package:contacts_diary/controllers/contact_contorller.dart';
 import 'package:contacts_diary/controllers/counter_controller.dart';
+import 'package:contacts_diary/controllers/stepper_controller.dart';
 import 'package:contacts_diary/controllers/theme_contorller.dart';
+import 'package:contacts_diary/models/counter_model.dart';
 import 'package:contacts_diary/models/theme_model.dart';
 import 'package:contacts_diary/routes/routes.dart';
 import 'package:contacts_diary/theme/app_themes.dart';
@@ -22,14 +25,22 @@ class MyApp extends StatelessWidget {
       builder: (context, _) => MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (context) => CounterController(),
+            create: (context) => CounterController(
+              counterModel: CounterModel(counter: counter ?? 0),
+            ),
           ),
           ChangeNotifierProvider(
             create: (context) => ThemeController(
               themeModel: ThemeModel(
-                isTheme: isTheme!,
+                isTheme: isTheme ?? true,
               ),
             ),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => StepperController(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ContactController(),
           ),
         ],
         builder: (context, _) => MaterialApp(

@@ -1,3 +1,5 @@
+import 'package:contacts_diary/view/screens/add_to_contact_page/add_to_contact_page.dart';
+import 'package:contacts_diary/view/screens/contact_detail_page/contact_detail_page.dart';
 import 'package:contacts_diary/view/screens/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,8 @@ class Routes {
   static Map<String, WidgetBuilder> myRoutes = {
     splashScreen: (ctx) => const SplashScreen(),
     homePage: (ctx) => const HomePage(),
+    addToContactPage: (ctx) => const AddToContactPage(),
+    detailPage: (ctx) => const ContactDetailPage(),
   };
 }
 

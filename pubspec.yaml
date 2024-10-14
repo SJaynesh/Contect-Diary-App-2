@@ -38,6 +38,9 @@ dependencies:
   flutter_screenutil: ^5.9.3
   provider: ^6.1.2
   shared_preferences: ^2.3.2
+  image_picker: any
+  url_launcher: any
+  local_auth: any
 
 dev_dependencies:
   flutter_test:
