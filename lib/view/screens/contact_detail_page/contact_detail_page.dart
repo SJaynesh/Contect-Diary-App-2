@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:local_auth/local_auth.dart';
 
 class ContactDetailPage extends StatelessWidget {
   const ContactDetailPage({super.key});
@@ -193,6 +194,31 @@ class ContactDetailPage extends StatelessWidget {
                   );
                 },
                 child: const Text("URL"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  LocalAuthentication auth = LocalAuthentication();
+
+                  bool canCheckBioMaterics = await auth.canCheckBiometrics;
+
+                  log("Bio Materics Check : $canCheckBioMaterics");
+
+                  try {
+                    if (canCheckBioMaterics) {
+                      bool isAuth = await auth.authenticate(
+                        localizedReason: "Local Auth...",
+                        options: const AuthenticationOptions(
+                          biometricOnly: false,
+                        ),
+                      );
+
+                      log("AUTH : $isAuth");
+                    }
+                  } catch (e) {
+                    log("ERROR : $e");
+                  }
+                },
+                child: const Text("Local Auth"),
               ),
             ],
           ),
